@@ -55,7 +55,7 @@ function test_mail {
 	smtp_pass=`cat /opt/Mikro-HC_v1/Mikro-HC.conf | head -n 22 | tail -n 1 | cut -d = -f 2`
 	mail_to=`cat /opt/Mikro-HC_v1/Mikro-HC.conf | head -n 24 | tail -n 1 | cut -d = -f 2`
 
-	text=`date '+DATE: %m/%d/%y TIME: %H:%M:%S' ; echo "Router ip : 127.0.0.1" ; echo "Maximum router voltage is 23V\nMaximum router temperature is 28C"`
+	text=`date '+DATE: %m/%d/%y TIME: %H:%M:%S' ; echo "Router ip : 127.0.0.1" ; echo -e "Maximum router voltage is 23V\nMaximum router temperature is 28C"`
 	echo "$text" | mailx -v -r "$smtp_user" -s "Mikro-HC - Testing" -S smtp=$smtp_srv -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user="$smtp_user" -S smtp-auth-password="$smtp_pass" -S ssl-verify=ignore -S nss-config-dir=/etc/pki/nssdb/ $mail_to
 }
 
